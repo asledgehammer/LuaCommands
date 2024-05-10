@@ -1,0 +1,4 @@
+name=Lua Commands
+poster=preview.png
+description=Edited for additional commands. '/luacmd <command> <varargs>
+id=lua_commands
