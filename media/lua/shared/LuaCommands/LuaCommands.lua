@@ -1,5 +1,5 @@
 --- @author JabDoesThings
-LuaCommands = {};
+local LuaCommands = {};
 
 --- @type boolean
 --- Set to true to print received commands.
@@ -10,7 +10,7 @@ local handlers = {};
 
 --- @param name string The name of the command.
 --- @param callback fun(author: string, command: string, args: string[]): string|void The handler to call when the command is triggered.
-function LuaCommands.register(name, callback)
+LuaCommands.register = function(name, callback)
     if name == nil then error('The name is nil.') end
     if #name == 0 then error('The name of the LuaCommands is empty.') end
     if callback == nil then error('The function is nil.') end
@@ -18,7 +18,7 @@ function LuaCommands.register(name, callback)
 end
 
 --- @param name string The name of the command.
-function LuaCommands.unregister(name)
+LuaCommands.unregister = function(name)
     if name == nil then error('The name is nil.') end
     if #name == 0 then error('The name of the LuaCommands is empty.') end
     handlers[string.lower(name)] = nil;
@@ -61,3 +61,6 @@ if not isServer() and not isClient() then
         Events.OnLuaCommand.Add(LuaCommands.onCommand);
     end);
 end
+
+_G.LuaCommands = LuaCommands;
+return LuaCommands;
