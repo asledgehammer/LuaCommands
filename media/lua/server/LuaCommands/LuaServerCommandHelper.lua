@@ -13,7 +13,7 @@ function LuaServerCommandHandler.getPlayerByUsername(username) end
 --- Retrieves all players on the server.
 ---
 --- @return IsoPlayer[] players All online players.
-function LuaServerCommandHandler.getOnlinePlayers() end
+function LuaServerCommandHandler.getOnlinePlayers() return { } end
 
 --- Syncs an IsoObject with all players on the server.
 ---
@@ -47,16 +47,18 @@ function LuaServerCommandHandler.playWorldSoundSquare(sound, square, radius) end
 --- @param z integer The z-coordinate in the world. (In squares)
 ---
 --- @return IsoZombie zombie The zombie created.
-function LuaServerCommandHandler.createZombie(x, y, z) end
+function LuaServerCommandHandler.createZombie(x, y, z) return IsoZombie.new(getCell()) end
 
 --- Executes a command on the server.
 ---
 --- @param command string The command to execute.
 --- 
 --- @return string result The results of the command-execution attempt.
-function LuaServerCommandHandler.executeServerCommand(command) end
+function LuaServerCommandHandler.executeServerCommand(command) return '' end
 
 --- Triggers an alarm in a room.
 ---
 --- @param roomOrRoomDef IsoRoom|RoomDef The room (or room-definition), to trigger the alarm.
 function LuaServerCommandHandler.triggerRoomAlarm(roomOrRoomDef) end
+
+return LuaServerCommandHandler;
